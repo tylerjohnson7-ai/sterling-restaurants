@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sterling Restaurants | Moe's Southwest Grill Franchisee</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold: #D4A847;
+      --gold-light: #F0D68A;
+      --green: #2D6A4F;
+      --green-dark: #1B4332;
+      --red: #C1292E;
+      --charcoal: #1A1A2E;
+      --slate: #2D2D44;
+      --off-white: #FAF9F6;
+      --warm-gray: #F0EDE8;
+      --text: #1A1A2E;
+      --text-light: #6B7280;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--off-white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(26, 26, 46, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(212, 168, 71, 0.15);
+      transition: background 0.3s;
+    }
+    .nav-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 72px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 800;
+      color: #fff; text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a {
+      color: rgba(255,255,255,0.8); text-decoration: none;
+      font-size: 0.9rem; font-weight: 500;
+      transition: color 0.2s; letter-spacing: 0.3px;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold); color: var(--charcoal) !important;
+      padding: 0.6rem 1.5rem; border-radius: 8px;
+      font-weight: 700 !important; font-size: 0.85rem !important;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(212, 168, 71, 0.4);
+      color: var(--charcoal) !important;
+    }
+
+    /* Mobile menu */
+    .mobile-toggle {
+      display: none; background: none; border: none; cursor: pointer;
+      flex-direction: column; gap: 5px; padding: 4px;
+    }
+    .mobile-toggle span {
+      display: block; width: 24px; height: 2px;
+      background: #fff; border-radius: 2px; transition: 0.3s;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      background: linear-gradient(135deg, var(--charcoal) 0%, var(--slate) 50%, var(--green-dark) 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 80%, rgba(212, 168, 71, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(45, 106, 79, 0.12) 0%, transparent 50%);
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4A847' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-content {
+      max-width: 1280px; margin: 0 auto; padding: 8rem 2rem 4rem;
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 800; line-height: 1.1;
+      color: #fff; margin-bottom: 1.5rem;
+    }
+    .hero-text h1 .gold { color: var(--gold); }
+    .hero-text p {
+      font-size: 1.15rem; color: rgba(255,255,255,0.7);
+      max-width: 520px; margin-bottom: 2.5rem; line-height: 1.8;
+    }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 1rem 2rem; border-radius: 12px;
+      font-weight: 700; font-size: 0.95rem;
+      text-decoration: none; transition: all 0.3s;
+      letter-spacing: 0.3px; border: none; cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--gold); color: var(--charcoal);
+      box-shadow: 0 4px 20px rgba(212, 168, 71, 0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(212, 168, 71, 0.45);
+    }
+    .btn-outline {
+      background: transparent; color: #fff;
+      border: 2px solid rgba(255,255,255,0.25);
+    }
+    .btn-outline:hover {
+      border-color: var(--gold); color: var(--gold);
+      background: rgba(212, 168, 71, 0.05);
+    }
+
+    .hero-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px; padding: 2rem;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .stat-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(212, 168, 71, 0.3);
+    }
+    .stat-number {
+      font-size: 3rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; line-height: 1;
+    }
+    .stat-label {
+      color: rgba(255,255,255,0.6); font-size: 0.9rem;
+      margin-top: 0.5rem; font-weight: 500;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 2rem; }
+    .section-inner { max-width: 1280px; margin: 0 auto; }
+    .section-label {
+      display: inline-block; font-size: 0.8rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: var(--gold); margin-bottom: 1rem;
+      background: rgba(212, 168, 71, 0.1);
+      padding: 0.4rem 1rem; border-radius: 100px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 800; margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .section-subtitle {
+      font-size: 1.1rem; color: var(--text-light);
+      max-width: 600px; line-height: 1.8;
+    }
+
+    /* ── ABOUT ── */
+    .about { background: #fff; }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center; margin-top: 3rem;
+    }
+    .about-image {
+      border-radius: 24px; overflow: hidden;
+      background: linear-gradient(135deg, var(--green-dark), var(--charcoal));
+      aspect-ratio: 4/3; position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .about-image-text {
+      color: var(--gold); font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 800; text-align: center;
+      padding: 2rem; line-height: 1.3;
+    }
+    .about-image-text small {
+      display: block; font-family: 'Inter', sans-serif;
+      font-size: 0.85rem; color: rgba(255,255,255,0.5);
+      margin-top: 0.75rem; font-weight: 500;
+    }
+    .about-content .section-subtitle { margin-bottom: 2rem; }
+    .about-highlights {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .highlight {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1rem; border-radius: 12px;
+      transition: background 0.2s;
+    }
+    .highlight:hover { background: var(--warm-gray); }
+    .highlight-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(212, 168, 71, 0.1);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 1.2rem;
+    }
+    .highlight h4 { font-size: 1rem; margin-bottom: 0.2rem; }
+    .highlight p { font-size: 0.9rem; color: var(--text-light); }
+
+    /* ── VALUES ── */
+    .values { background: var(--off-white); }
+    .values-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .value-card {
+      background: #fff; border-radius: 20px;
+      padding: 2.5rem 2rem; text-align: center;
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: all 0.3s; position: relative; overflow: hidden;
+    }
+    .value-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 4px; background: linear-gradient(90deg, var(--gold), var(--green));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s;
+    }
+    .value-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+    .value-card:hover::before { transform: scaleX(1); }
+    .value-icon {
+      width: 64px; height: 64px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(212, 168, 71, 0.1), rgba(45, 106, 79, 0.1));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem; font-size: 1.8rem;
+    }
+    .value-card h3 {
+      font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem;
+    }
+    .value-card p { font-size: 0.9rem; color: var(--text-light); line-height: 1.7; }
+
+    /* ── LOCATIONS BANNER ── */
+    .locations-banner {
+      background: linear-gradient(135deg, var(--charcoal), var(--green-dark));
+      color: #fff; text-align: center;
+      padding: 5rem 2rem; position: relative; overflow: hidden;
+    }
+    .locations-banner::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 50%, rgba(212, 168, 71, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 50%, rgba(45, 106, 79, 0.08) 0%, transparent 60%);
+    }
+    .locations-banner .section-inner { position: relative; z-index: 2; }
+    .locations-banner .section-title { color: #fff; }
+    .locations-banner .section-subtitle {
+      color: rgba(255,255,255,0.6); margin: 0 auto 2.5rem;
+    }
+    .state-tags {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 0.75rem; margin-top: 2rem;
+    }
+    .state-tag {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.85);
+      padding: 0.6rem 1.4rem; border-radius: 100px;
+      font-size: 0.9rem; font-weight: 500;
+      transition: all 0.2s;
+    }
+    .state-tag:hover {
+      background: rgba(212, 168, 71, 0.15);
+      border-color: rgba(212, 168, 71, 0.3);
+      color: var(--gold);
+    }
+
+    /* ── ORDER / CTA STRIP ── */
+    .order-strip {
+      background: #fff; padding: 4rem 2rem;
+    }
+    .order-grid {
+      max-width: 1280px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+    .order-card {
+      background: var(--off-white); border-radius: 20px;
+      padding: 2.5rem; text-align: center;
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: all 0.3s;
+    }
+    .order-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+    }
+    .order-card-icon {
+      font-size: 2.5rem; margin-bottom: 1rem;
+    }
+    .order-card h3 {
+      font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;
+    }
+    .order-card p {
+      font-size: 0.9rem; color: var(--text-light); margin-bottom: 1.5rem;
+    }
+    .order-card .btn {
+      width: 100%; justify-content: center;
+      padding: 0.85rem 1.5rem; font-size: 0.85rem;
+    }
+
+    /* ── CAREERS ── */
+    .careers {
+      background: var(--warm-gray);
+    }
+    .careers-content {
+      display: grid; grid-template-columns: 1.2fr 1fr;
+      gap: 4rem; align-items: center;
+    }
+    .careers-text .section-subtitle { margin-bottom: 2rem; }
+    .careers-perks {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .perk {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.95rem; font-weight: 500;
+    }
+    .perk-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
+    }
+    .careers-image {
+      background: linear-gradient(135deg, var(--gold), #e8c36a);
+      border-radius: 24px; aspect-ratio: 1;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .careers-image-text {
+      color: var(--charcoal); font-family: 'Playfair Display', serif;
+      font-size: 2.5rem; font-weight: 800; text-align: center;
+      padding: 2rem; line-height: 1.2;
+    }
+    .careers-image-text small {
+      display: block; font-family: 'Inter', sans-serif;
+      font-size: 0.9rem; color: rgba(26, 26, 46, 0.6);
+      margin-top: 0.75rem; font-weight: 500;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal); color: rgba(255,255,255,0.6);
+      padding: 4rem 2rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1280px; margin: 0 auto;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem; margin-bottom: 3rem;
+    }
+    .footer-brand .nav-logo { display: inline-block; margin-bottom: 1rem; }
+    .footer-brand p { font-size: 0.9rem; line-height: 1.7; max-width: 320px; }
+    .footer-col h4 {
+      color: #fff; font-size: 0.85rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      margin-bottom: 1.25rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.75rem; }
+    .footer-col a {
+      color: rgba(255,255,255,0.5); text-decoration: none;
+      font-size: 0.9rem; transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 2rem; text-align: center;
+      font-size: 0.85rem;
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero-content { grid-template-columns: 1fr; text-align: center; }
+      .hero-text p { margin-left: auto; margin-right: auto; }
+      .hero-buttons { justify-content: center; }
+      .hero-stats { max-width: 450px; margin: 0 auto; }
+      .about-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .careers-content { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-toggle { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 72px; left: 0; right: 0;
+        background: var(--charcoal); padding: 2rem;
+        border-bottom: 1px solid rgba(212, 168, 71, 0.15);
+      }
+      .hero { min-height: auto; padding-top: 5rem; }
+      .hero-content { padding: 6rem 1.5rem 3rem; }
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+      .stat-card { padding: 1.5rem; }
+      .stat-number { font-size: 2.2rem; }
+      .values-grid { grid-template-columns: 1fr; }
+      .order-grid { grid-template-columns: 1fr; }
+      .careers-perks { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      section { padding: 4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Sterling<span>.</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#values">Values</a></li>
+        <li><a href="#locations">Locations</a></li>
+        <li><a href="#order">Order</a></li>
+        <li><a href="#careers">Careers</a></li>
+        <li><a href="https://www.moes.com" target="_blank" class="nav-cta">Start Order</a></li>
+      </ul>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Welcome to<br><span class="gold">Moe's.</span></h1>
+        <p>Sterling Restaurants is the largest Moe's Southwest Grill franchisee in the system &mdash; serving up fresh, bold, southwest flavor across 88 locations in 7 states since 2009.</p>
+        <div class="hero-buttons">
+          <a href="https://www.moes.com" target="_blank" class="btn btn-primary">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Order Now
+          </a>
+          <a href="#about" class="btn btn-outline">Learn More</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-number">88</div>
+          <div class="stat-label">Restaurant Locations</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">7</div>
+          <div class="stat-label">States Served</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Years of Service</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">#1</div>
+          <div class="stat-label">Largest Franchisee</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="section-inner">
+      <div class="about-grid fade-up">
+        <div class="about-image">
+          <div class="about-image-text">
+            Fresh. Bold.<br>Southwest.
+            <small>Award-Winning Franchisee of the Year</small>
+          </div>
+        </div>
+        <div class="about-content">
+          <span class="section-label">About Us</span>
+          <h2 class="section-title">Built on Fresh Ingredients &amp; Genuine Hospitality</h2>
+          <p class="section-subtitle">Founded on July 14, 2009, Sterling Restaurants, LLC operates 88 Moe's Southwest Grill locations across the Southeast and Northeast, making us the largest franchisee in the Moe's system.</p>
+          <div class="about-highlights">
+            <div class="highlight">
+              <div class="highlight-icon">&#127798;</div>
+              <div>
+                <h4>Fresh, Bold Flavors</h4>
+                <p>Every meal crafted with quality ingredients and bold southwest taste.</p>
+              </div>
+            </div>
+            <div class="highlight">
+              <div class="highlight-icon">&#129309;</div>
+              <div>
+                <h4>Genuine Hospitality</h4>
+                <p>Memorable experiences that build trust and encourage return visits.</p>
+              </div>
+            </div>
+            <div class="highlight">
+              <div class="highlight-icon">&#127942;</div>
+              <div>
+                <h4>Award-Winning</h4>
+                <p>Recognized as Franchisee of the Year for operational excellence.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="values" id="values">
+    <div class="section-inner">
+      <div style="text-align:center;" class="fade-up">
+        <span class="section-label">Our Values</span>
+        <h2 class="section-title">What Drives Us Every Day</h2>
+        <p class="section-subtitle" style="margin: 0 auto;">The principles behind every decision, every location, every guest interaction.</p>
+      </div>
+      <div class="values-grid fade-up">
+        <div class="value-card">
+          <div class="value-icon">&#128170;</div>
+          <h3>Ownership Mentality</h3>
+          <p>We run every restaurant as if the business were our own, with pride and accountability.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">&#127793;</div>
+          <h3>Elevate Others</h3>
+          <p>We invest in our people through mentorship, growth opportunities, and genuine care.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">&#128737;</div>
+          <h3>Integrity</h3>
+          <p>Every decision is guided by ethical standards and doing the right thing.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">&#9889;</div>
+          <h3>Positive Energy</h3>
+          <p>We bring resilience, enthusiasm, and optimism to everything we do.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATIONS BANNER -->
+  <section class="locations-banner" id="locations">
+    <div class="section-inner fade-up">
+      <span class="section-label">Our Reach</span>
+      <h2 class="section-title">88 Locations Across 7 States</h2>
+      <p class="section-subtitle">From the Southeast to the Northeast, there's a Sterling-operated Moe's near you.</p>
+      <div class="state-tags">
+        <span class="state-tag">Georgia</span>
+        <span class="state-tag">Florida</span>
+        <span class="state-tag">South Carolina</span>
+        <span class="state-tag">North Carolina</span>
+        <span class="state-tag">Alabama</span>
+        <span class="state-tag">New York</span>
+        <span class="state-tag">New Jersey</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER STRIP -->
+  <section class="order-strip" id="order">
+    <div class="section-inner" style="text-align:center; margin-bottom: 3rem;">
+      <span class="section-label">Get Moe's</span>
+      <h2 class="section-title">How Can We Serve You?</h2>
+    </div>
+    <div class="order-grid fade-up">
+      <div class="order-card">
+        <div class="order-card-icon">&#128241;</div>
+        <h3>Order Online</h3>
+        <p>Skip the line. Build your perfect burrito, bowl, or tacos and pick up in minutes.</p>
+        <a href="https://www.moes.com" target="_blank" class="btn btn-primary">Start Order</a>
+      </div>
+      <div class="order-card">
+        <div class="order-card-icon">&#127880;</div>
+        <h3>Catering</h3>
+        <p>Feed the whole crew. Moe's catering makes every event a fiesta.</p>
+        <a href="https://www.moes.com/catering" target="_blank" class="btn btn-primary">Order Catering</a>
+      </div>
+      <div class="order-card">
+        <div class="order-card-icon">&#127873;</div>
+        <h3>Gift Cards</h3>
+        <p>Give the gift of Moe's. Perfect for birthdays, holidays, or just because.</p>
+        <a href="https://www.moes.com/gift-cards" target="_blank" class="btn btn-primary">Buy Gift Cards</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAREERS -->
+  <section class="careers" id="careers">
+    <div class="section-inner">
+      <div class="careers-content fade-up">
+        <div class="careers-text">
+          <span class="section-label">Join the Team</span>
+          <h2 class="section-title">Build Your Career with Sterling</h2>
+          <p class="section-subtitle">We're more than a workplace &mdash; we're a family of passionate people committed to growth, excellence, and having fun along the way.</p>
+          <div class="careers-perks">
+            <div class="perk"><div class="perk-dot"></div>Competitive Pay</div>
+            <div class="perk"><div class="perk-dot"></div>Flexible Schedules</div>
+            <div class="perk"><div class="perk-dot"></div>Growth Opportunities</div>
+            <div class="perk"><div class="perk-dot"></div>Team Culture</div>
+            <div class="perk"><div class="perk-dot"></div>Leadership Training</div>
+            <div class="perk"><div class="perk-dot"></div>Benefits Packages</div>
+          </div>
+          <div style="margin-top: 2rem;">
+            <a href="https://sterlingjobs.com" target="_blank" class="btn btn-primary">
+              View Open Positions
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="careers-image">
+          <div class="careers-image-text">
+            We're<br>Hiring
+            <small>sterlingjobs.com</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">Sterling<span>.</span></a>
+          <p>Sterling Restaurants, LLC &mdash; the largest Moe's Southwest Grill franchisee, proudly serving fresh southwest flavors across 88 locations since 2009.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#values">Our Values</a></li>
+            <li><a href="#locations">Locations</a></li>
+            <li><a href="#careers">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Order</h4>
+          <ul>
+            <li><a href="https://www.moes.com" target="_blank">Order Online</a></li>
+            <li><a href="https://www.moes.com/catering" target="_blank">Catering</a></li>
+            <li><a href="https://www.moes.com/gift-cards" target="_blank">Gift Cards</a></li>
+            <li><a href="https://www.moes.com/rewards" target="_blank">Moe Rewards</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://www.sterlingmoes.com" target="_blank">SterlingMoes.com</a></li>
+            <li><a href="https://sterlingjobs.com" target="_blank">SterlingJobs.com</a></li>
+            <li><a href="https://www.moes.com" target="_blank">Moes.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Sterling Restaurants, LLC. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    document.getElementById('mobileToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    // Scroll-triggered fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
